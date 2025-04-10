@@ -130,7 +130,7 @@
             // SloSelectComboBox
             // 
             this.SloSelectComboBox.DataSource = this.sLOBindingSource;
-            this.SloSelectComboBox.DisplayMember = "Title";
+            this.SloSelectComboBox.DisplayMember = "Description";
             this.SloSelectComboBox.FormattingEnabled = true;
             this.SloSelectComboBox.Location = new System.Drawing.Point(69, 134);
             this.SloSelectComboBox.Name = "SloSelectComboBox";

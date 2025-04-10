@@ -37,7 +37,7 @@ namespace SloManager
 
         public class PendingScore
         {
-            public string SLO_Title { get; set; }
+            public string SLO_Description { get; set; }
             public int Measure_ID { get; set; }
             public string Measure_Name { get; set; }
             public int Grade_Value { get; set; }
@@ -45,7 +45,7 @@ namespace SloManager
 
             public override string ToString()
             {
-                return $"SLO: {SLO_Title} | Metric: {Measure_Name} | Grade: {Grade_Value} | Year: {Date.Year}";
+                return $"SLO: {SLO_Description} | Metric: {Measure_Name} | Grade: {Grade_Value} | Year: {Date.Year}";
             }
         }
 
@@ -79,7 +79,7 @@ namespace SloManager
             {
                 var pending = new PendingScore
                 {
-                    SLO_Title = selectedSLO.Title,
+                    SLO_Description = selectedSLO.Description,
                     Measure_ID = selectedMeasureId,
                     Measure_Name = selectedMeasurement.Title,
                     Grade_Value = gradeValue,
