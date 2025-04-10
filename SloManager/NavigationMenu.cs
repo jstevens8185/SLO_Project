@@ -57,27 +57,27 @@ namespace SloManager
 
         private void viewChartsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Form parentForm = this.FindForm();
+            Form parentForm = this.FindForm();
 
-            //if (parentForm is ViewForm)
-            //{
-            //    return;
-            //}
+            if (parentForm is ViewCharts)
+            {
+                return;
+            }
 
-            //foreach (Form form in Application.OpenForms)
-            //{
-            //    if (form is ViewForm)
-            //    {
-            //        form.Show();
-            //        form.Activate();
-            //        parentForm?.Close();
-            //        return;
-            //    }
-            //}
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is ViewCharts)
+                {
+                    form.Show();
+                    form.Activate();
+                    parentForm?.Close();
+                    return;
+                }
+            }
 
-            //ViewForm viewForm = new ViewForm();
-            //viewForm.Show();
-            //parentForm.Visible = false;
+            ViewCharts viewForm = new ViewCharts();
+            viewForm.Show();
+            parentForm.Visible = false;
         }
 
         private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)

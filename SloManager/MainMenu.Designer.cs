@@ -55,6 +55,7 @@
             this.ViewButton.TabIndex = 1;
             this.ViewButton.Text = "View Charts";
             this.ViewButton.UseVisualStyleBackColor = true;
+            this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
             // 
             // EditSLOButton
             // 

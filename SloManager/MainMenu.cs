@@ -53,5 +53,12 @@ namespace SloManager
             viewScores.Show();
             this.Hide();
         }
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            ViewCharts viewCharts = new ViewCharts();
+            viewCharts.Show();
+            this.Hide();
+        }
     }
 }
