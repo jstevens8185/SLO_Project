@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SloDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Measurements">
+          <Key>
+            <PropertyRef Name="Measurement_ID" />
+          </Key>
+          <Property Name="Measurement_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SLO_ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Target" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scores">
+          <Key>
+            <PropertyRef Name="Score_Id" />
+          </Key>
+          <Property Name="Score_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Measurement_ID" Type="int" Nullable="false" />
+          <Property Name="Score_Val" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SLOs">
+          <Key>
+            <PropertyRef Name="SLO_ID" />
+          </Key>
+          <Property Name="SLO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Measurements_ToSLOs">
+          <End Role="SLOs" Type="Self.SLOs" Multiplicity="1" />
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOs">
+              <PropertyRef Name="SLO_ID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="SLO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_ToMeasurements">
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurements">
+              <PropertyRef Name="Measurement_ID" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="Measurement_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SloDatabaseModelStoreContainer">
+          <EntitySet Name="Measurements" EntityType="Self.Measurements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scores" EntityType="Self.Scores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SLOs" EntityType="Self.SLOs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Measurements_ToSLOs" Association="Self.FK_Measurements_ToSLOs">
+            <End Role="SLOs" EntitySet="SLOs" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_ToMeasurements" Association="Self.FK_Scores_ToMeasurements">
+            <End Role="Measurements" EntitySet="Measurements" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SloDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Measurement">
+          <Key>
+            <PropertyRef Name="Measurement_ID" />
+          </Key>
+          <Property Name="Measurement_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SLO_ID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Target" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SLO" Relationship="Self.FK_Measurements_ToSLOs" FromRole="Measurements" ToRole="SLOs" />
+          <NavigationProperty Name="Scores" Relationship="Self.FK_Scores_ToMeasurements" FromRole="Measurements" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Score_Id" />
+          </Key>
+          <Property Name="Score_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Measurement_ID" Type="Int32" Nullable="false" />
+          <Property Name="Score_Val" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Measurement" Relationship="Self.FK_Scores_ToMeasurements" FromRole="Scores" ToRole="Measurements" />
+        </EntityType>
+        <EntityType Name="SLO">
+          <Key>
+            <PropertyRef Name="SLO_ID" />
+          </Key>
+          <Property Name="SLO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Measurements" Relationship="Self.FK_Measurements_ToSLOs" FromRole="SLOs" ToRole="Measurements" />
+        </EntityType>
+        <Association Name="FK_Measurements_ToSLOs">
+          <End Role="SLOs" Type="Self.SLO" Multiplicity="1" />
+          <End Role="Measurements" Type="Self.Measurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOs">
+              <PropertyRef Name="SLO_ID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="SLO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_ToMeasurements">
+          <End Role="Measurements" Type="Self.Measurement" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Score" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Measurements">
+              <PropertyRef Name="Measurement_ID" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="Measurement_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SloDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Measurements" EntityType="Self.Measurement" />
+          <EntitySet Name="Scores" EntityType="Self.Score" />
+          <EntitySet Name="SLOs" EntityType="Self.SLO" />
+          <AssociationSet Name="FK_Measurements_ToSLOs" Association="Self.FK_Measurements_ToSLOs">
+            <End Role="SLOs" EntitySet="SLOs" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_ToMeasurements" Association="Self.FK_Scores_ToMeasurements">
+            <End Role="Measurements" EntitySet="Measurements" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SloDatabaseModelStoreContainer" CdmEntityContainer="SloDatabaseEntities">
+          <EntitySetMapping Name="Measurements">
+            <EntityTypeMapping TypeName="SloDatabaseModel.Measurement">
+              <MappingFragment StoreEntitySet="Measurements">
+                <ScalarProperty Name="Measurement_ID" ColumnName="Measurement_ID" />
+                <ScalarProperty Name="SLO_ID" ColumnName="SLO_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scores">
+            <EntityTypeMapping TypeName="SloDatabaseModel.Score">
+              <MappingFragment StoreEntitySet="Scores">
+                <ScalarProperty Name="Score_Id" ColumnName="Score_Id" />
+                <ScalarProperty Name="Measurement_ID" ColumnName="Measurement_ID" />
+                <ScalarProperty Name="Score_Val" ColumnName="Score_Val" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLOs">
+            <EntityTypeMapping TypeName="SloDatabaseModel.SLO">
+              <MappingFragment StoreEntitySet="SLOs">
+                <ScalarProperty Name="SLO_ID" ColumnName="SLO_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
