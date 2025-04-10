@@ -34,7 +34,7 @@ This is a multi-project Visual Studio solution:
 ## 💻 How to Run the Project on a New Machine
 
 1. Clone the Repository  
-   git clone https://github.com/yourusername/SLO_Project.git  
+   git clone https://github.com/jstevens8185/SLO_Project.git  
    cd SLO_Project
 
 2. Open the Solution in Visual Studio  
