@@ -35,7 +35,7 @@ namespace SloManager
 
         public class PendingScore
         {
-            public string SLO_Title { get; set; }     // 👈 Add this
+            public string SLO_Title { get; set; }
             public int Measure_ID { get; set; }
             public string Measure_Name { get; set; }
             public int Grade_Value { get; set; }
