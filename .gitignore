@@ -1,0 +1,43 @@
+##########################################
+# Visual Studio / Windows Build Artifacts
+##########################################
+
+# Ignore user-specific settings and temp files
+*.user
+*.suo
+*.cache
+*.log
+*.pdb
+*.tmp
+*.bak
+
+# Ignore build output
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+
+# Ignore Visual Studio generated folders
+.vs/
+.vscode/
+.idea/
+*.dbmdl
+
+##########################################
+# NuGet / Package Management
+##########################################
+
+# Ignore local NuGet packages
+**/packages/
+*.nupkg
+*.snupkg
+
+##########################################
+# DO NOT ignore .mdf or .ldf
+# These are tracked to ensure DB portability
+# ⚠️ Make sure your .mdf is placed in a consistent path like App_Data/
+##########################################
+# (Empty section to emphasize this choice)
+
+# Optional: track only specific DB path
+#!SloManager/App_Data/SloDatabase.mdf
