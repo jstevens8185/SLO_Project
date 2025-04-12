@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SloManager
@@ -24,27 +17,29 @@ namespace SloManager
             this.Hide();
         }
 
-        private void EditSLOButton_Click(object sender, EventArgs e)
+        private void ManageTargetsButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Sorry, this feature isn't safe to use yet!");
-            return;
-
             Form parentForm = this.FindForm();
+
+            if (parentForm is ManageTargets)
+            {
+                return;
+            }
 
             foreach (Form form in Application.OpenForms)
             {
-                if (form is DataGridView)
+                if (form is ManageTargets)
                 {
                     form.Show();
                     form.Activate();
-                    parentForm?.Close();
+                    parentForm.Visible = false;
                     return;
                 }
             }
 
-            DataGridView dataGridView = new DataGridView();
-            dataGridView.Show();
-            parentForm.Hide();
+            ManageTargets manageTargetsForm = new ManageTargets();
+            manageTargetsForm.Show();
+            parentForm.Visible = false;
         }
 
         private void ViewDataButton_Click(object sender, EventArgs e)

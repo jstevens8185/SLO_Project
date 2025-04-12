@@ -21,7 +21,7 @@
           </Key>
           <Property Name="Score_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Measurement_ID" Type="int" Nullable="false" />
-          <Property Name="Score_Val" Type="int" Nullable="false" />
+          <Property Name="Score_Val" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SLOs">
@@ -92,7 +92,7 @@
           </Key>
           <Property Name="Score_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Measurement_ID" Type="Int32" Nullable="false" />
-          <Property Name="Score_Val" Type="Int32" Nullable="false" />
+          <Property Name="Score_Val" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Measurement" Relationship="Self.FK_Scores_ToMeasurements" FromRole="Scores" ToRole="Measurements" />
         </EntityType>

@@ -25,12 +25,15 @@ namespace SloManager
 
         private void EnterDataForm_Load(object sender, EventArgs e)
         {
+            DateTime date = DateTime.Now;
             dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).Load();
             sLOBindingSource.DataSource = dbcontext.SLOs.Local;
 
             dbcontext.Measurements.Load();
             measurementBindingSource.DataSource = dbcontext.Measurements.Local;
             SloSelectComboBox_SelectedIndexChanged(null, null);
+
+            YearComboBox.SelectedItem = date.Year.ToString();
 
         }
 
@@ -40,7 +43,7 @@ namespace SloManager
             public string SLO_Description { get; set; }
             public int Measure_ID { get; set; }
             public string Measure_Name { get; set; }
-            public int Grade_Value { get; set; }
+            public decimal Grade_Value { get; set; }
             public DateTime Date { get; set; }
 
             public override string ToString()
@@ -65,17 +68,18 @@ namespace SloManager
                     .ToList();
 
                 MetricComboBox.DataSource = filteredMeasurements;
-                MetricComboBox.DisplayMember = "Name";         // Use the correct property name
-                MetricComboBox.ValueMember = "Measurement_ID"; // Use the correct key name
+                MetricComboBox.DisplayMember = "Name";        
+                MetricComboBox.ValueMember = "Measurement_ID";
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             if (MetricComboBox.SelectedValue is int selectedMeasureId &&
-         int.TryParse(DataTextBox.Text, out int gradeValue) &&
+         decimal.TryParse(DataTextBox.Text, out decimal gradeValue) &&
          SloSelectComboBox.SelectedItem is SlosClassLibrary.SLO selectedSLO &&
-         MetricComboBox.SelectedItem is SlosClassLibrary.Measurement selectedMeasurement)
+         MetricComboBox.SelectedItem is SlosClassLibrary.Measurement selectedMeasurement &&
+         int.TryParse(YearComboBox.Text, out int selectedYear))
             {
                 var pending = new PendingScore
                 {
@@ -83,7 +87,7 @@ namespace SloManager
                     Measure_ID = selectedMeasureId,
                     Measure_Name = selectedMeasurement.Title,
                     Grade_Value = gradeValue,
-                    Date = DateTime.Now
+                    Date = new DateTime(selectedYear, 1, 1)
                 };
 
                 DataListBox.Items.Add(pending);
@@ -137,6 +141,31 @@ namespace SloManager
             {
                 MessageBox.Show($"Error saving scores: {ex.Message}");
             }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Form parentForm = this.FindForm();
+
+            if (parentForm is MainMenu)
+            {
+                return;
+            }
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is MainMenu)
+                {
+                    form.Show();
+                    form.Activate();
+                    parentForm.Visible = false;
+                    return;
+                }
+            }
+
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            parentForm.Visible = false;
         }
     }
 }

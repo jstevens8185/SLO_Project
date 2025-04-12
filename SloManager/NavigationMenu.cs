@@ -130,6 +130,31 @@ namespace SloManager
             enterDataForm.Show();
             parentForm.Visible = false;
         }
+
+        private void manageTargetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form parentForm = this.FindForm();
+
+            if (parentForm is ManageTargets)
+            {
+                return;
+            }
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is ManageTargets)
+                {
+                    form.Show();
+                    form.Activate();
+                    parentForm.Visible = false;
+                    return;
+                }
+            }
+
+            ManageTargets manageTargetsForm = new ManageTargets();
+            manageTargetsForm.Show();
+            parentForm.Visible = false;
+        }
     }
 }
 

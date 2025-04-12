@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b24751a6dea5444e9f6d76265b9913c4" Name="Diagram1">
+      <Diagram DiagramId="fd9c588f2a6f48b082bf38758ff3ab87" Name="Diagram1">
         <EntityTypeShape EntityType="SloDatabaseModel.Measurement" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SloDatabaseModel.Score" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SloDatabaseModel.SLO" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />

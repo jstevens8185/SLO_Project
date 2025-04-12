@@ -104,8 +104,8 @@
     </Content>
     <Content Include="SlosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SlosModel.Context.cs</LastGenOutput>
       <DependentUpon>SlosModel.edmx</DependentUpon>
+      <LastGenOutput>SlosModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="SlosModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -114,14 +114,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="SlosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SlosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="SlosModel.edmx.diagram">
       <DependentUpon>SlosModel.edmx</DependentUpon>
     </None>

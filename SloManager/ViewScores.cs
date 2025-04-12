@@ -40,22 +40,37 @@ namespace SloManager
         private void LoadScoresIntoGrid()
         {
             var scoreList = dbcontext.Scores
-    .Include(s => s.Measurement.SLO)
-    .Select(s => new
-    {
-        Score_ID = s.Score_Id, // ← Confirm property name is Score_ID, not Score_Id
-        SLO_Title = s.Measurement.SLO.Title,
-        Measurement_Title = s.Measurement.Title, // ← Use Name if Title doesn't exist
-        Score_Val = s.Score_Val,
-        Year = s.Date.Year
-    })
-    .ToList();
+                .Include(s => s.Measurement.SLO)
+                .Select(s => new
+                {
+                    Score_ID = s.Score_Id, 
+                    SLO_Title = s.Measurement.SLO.Description,
+                    Measurement_Title = s.Measurement.Title, 
+                    Score_Val = s.Score_Val,
+                    Year = s.Date.Year
+                })
+                .ToList();
 
 
             ScoresDataGridView.DataSource = scoreList;
 
-            
-            
+            // Hide score ID
+            if (ScoresDataGridView.Columns.Contains("Score_ID"))
+                ScoresDataGridView.Columns["Score_ID"].Visible = false;
+
+            // Resize cells to fit all text
+            if (ScoresDataGridView.Columns.Contains("SLO_Title"))
+                ScoresDataGridView.Columns["SLO_Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Change Grid header text to be more readable
+            if (ScoresDataGridView.Columns.Contains("SLO_Title"))
+                ScoresDataGridView.Columns["SLO_Title"].HeaderText = "SLO Title";
+
+            if (ScoresDataGridView.Columns.Contains("Measurement_Title"))
+                ScoresDataGridView.Columns["Measurement_Title"].HeaderText = "Metric Title";
+
+            if (ScoresDataGridView.Columns.Contains("Score_Val"))
+                ScoresDataGridView.Columns["Score_Val"].HeaderText = "Score";
 
         }
 
@@ -89,6 +104,76 @@ namespace SloManager
             {
                 MessageBox.Show("Please select a row to delete.");
             }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Form parentForm = this.FindForm();
+
+            if (parentForm is MainMenu)
+            {
+                return;
+            }
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is MainMenu)
+                {
+                    form.Show();
+                    form.Activate();
+                    parentForm.Visible = false;
+                    return;
+                }
+            }
+
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            parentForm.Visible = false;
+        }
+
+        private void SortScores(bool byYearFirst)
+        {
+            var sortedScores = dbcontext.Scores
+                .Include(s => s.Measurement.SLO)
+                .ToList();
+
+            var scoreList = byYearFirst
+                ? sortedScores
+                    .OrderBy(s => s.Date.Year)
+                    .ThenBy(s => s.Measurement.SLO.Description)
+                    .Select(s => new
+                    {
+                        Score_ID = s.Score_Id,
+                        SLO_Title = s.Measurement.SLO.Description,
+                        Measurement_Title = s.Measurement.Title,
+                        Score_Val = s.Score_Val,
+                        Year = s.Date.Year
+                    })
+                    .ToList()
+                : sortedScores
+                    .OrderBy(s => s.Measurement.SLO.Description)
+                    .ThenBy(s => s.Date.Year)
+                    .Select(s => new
+                    {
+                        Score_ID = s.Score_Id,
+                        SLO_Title = s.Measurement.SLO.Description,
+                        Measurement_Title = s.Measurement.Title,
+                        Score_Val = s.Score_Val,
+                        Year = s.Date.Year
+                    })
+                    .ToList();
+
+            ScoresDataGridView.DataSource = scoreList;
+        }
+
+        private void SortBySloButton_Click(object sender, EventArgs e)
+        {
+            SortScores(byYearFirst: false);
+        }
+
+        private void SortByYearButton_Click(object sender, EventArgs e)
+        {
+            SortScores(byYearFirst: true);
         }
     }
 }

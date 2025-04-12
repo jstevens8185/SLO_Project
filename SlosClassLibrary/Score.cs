@@ -16,7 +16,7 @@ namespace SlosClassLibrary
     {
         public int Score_Id { get; set; }
         public int Measurement_ID { get; set; }
-        public int Score_Val { get; set; }
+        public decimal Score_Val { get; set; }
         public System.DateTime Date { get; set; }
     
         public virtual Measurement Measurement { get; set; }

@@ -44,15 +44,17 @@
             this.YearComboBox = new System.Windows.Forms.ComboBox();
             this.DataListBox = new System.Windows.Forms.ListBox();
             this.navigationMenu1 = new SloManager.NavigationMenu();
+            this.BackButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.measurementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sLOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(69, 366);
+            this.RemoveButton.Location = new System.Drawing.Point(92, 450);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveButton.Size = new System.Drawing.Size(100, 28);
             this.RemoveButton.TabIndex = 23;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(69, 319);
+            this.AddButton.Location = new System.Drawing.Point(92, 393);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
+            this.AddButton.Size = new System.Drawing.Size(100, 28);
             this.AddButton.TabIndex = 22;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -70,9 +73,10 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(587, 381);
+            this.SaveButton.Location = new System.Drawing.Point(783, 469);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(179, 23);
+            this.SaveButton.Size = new System.Drawing.Size(239, 28);
             this.SaveButton.TabIndex = 21;
             this.SaveButton.Text = "Save All To Database";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -81,25 +85,28 @@
             // DataLabel
             // 
             this.DataLabel.AutoSize = true;
-            this.DataLabel.Location = new System.Drawing.Point(69, 250);
+            this.DataLabel.Location = new System.Drawing.Point(92, 308);
+            this.DataLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DataLabel.Name = "DataLabel";
-            this.DataLabel.Size = new System.Drawing.Size(88, 13);
+            this.DataLabel.Size = new System.Drawing.Size(112, 16);
             this.DataLabel.TabIndex = 20;
             this.DataLabel.Text = "Aggregate Grade";
             // 
             // DataTextBox
             // 
-            this.DataTextBox.Location = new System.Drawing.Point(69, 269);
+            this.DataTextBox.Location = new System.Drawing.Point(92, 331);
+            this.DataTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataTextBox.Name = "DataTextBox";
-            this.DataTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DataTextBox.Size = new System.Drawing.Size(132, 22);
             this.DataTextBox.TabIndex = 19;
             // 
             // MetricLabel
             // 
             this.MetricLabel.AutoSize = true;
-            this.MetricLabel.Location = new System.Drawing.Point(69, 178);
+            this.MetricLabel.Location = new System.Drawing.Point(92, 219);
+            this.MetricLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MetricLabel.Name = "MetricLabel";
-            this.MetricLabel.Size = new System.Drawing.Size(36, 13);
+            this.MetricLabel.Size = new System.Drawing.Size(43, 16);
             this.MetricLabel.TabIndex = 18;
             this.MetricLabel.Text = "Metric";
             // 
@@ -108,9 +115,10 @@
             this.MetricComboBox.DataSource = this.measurementBindingSource;
             this.MetricComboBox.DisplayMember = "Title";
             this.MetricComboBox.FormattingEnabled = true;
-            this.MetricComboBox.Location = new System.Drawing.Point(69, 199);
+            this.MetricComboBox.Location = new System.Drawing.Point(92, 245);
+            this.MetricComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MetricComboBox.Name = "MetricComboBox";
-            this.MetricComboBox.Size = new System.Drawing.Size(216, 21);
+            this.MetricComboBox.Size = new System.Drawing.Size(287, 24);
             this.MetricComboBox.TabIndex = 17;
             this.MetricComboBox.ValueMember = "Description";
             // 
@@ -121,9 +129,10 @@
             // SloSelectLabel
             // 
             this.SloSelectLabel.AutoSize = true;
-            this.SloSelectLabel.Location = new System.Drawing.Point(69, 109);
+            this.SloSelectLabel.Location = new System.Drawing.Point(92, 134);
+            this.SloSelectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SloSelectLabel.Name = "SloSelectLabel";
-            this.SloSelectLabel.Size = new System.Drawing.Size(28, 13);
+            this.SloSelectLabel.Size = new System.Drawing.Size(33, 16);
             this.SloSelectLabel.TabIndex = 16;
             this.SloSelectLabel.Text = "SLO";
             // 
@@ -132,9 +141,10 @@
             this.SloSelectComboBox.DataSource = this.sLOBindingSource;
             this.SloSelectComboBox.DisplayMember = "Description";
             this.SloSelectComboBox.FormattingEnabled = true;
-            this.SloSelectComboBox.Location = new System.Drawing.Point(69, 134);
+            this.SloSelectComboBox.Location = new System.Drawing.Point(92, 165);
+            this.SloSelectComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SloSelectComboBox.Name = "SloSelectComboBox";
-            this.SloSelectComboBox.Size = new System.Drawing.Size(216, 21);
+            this.SloSelectComboBox.Size = new System.Drawing.Size(287, 24);
             this.SloSelectComboBox.TabIndex = 15;
             this.SloSelectComboBox.ValueMember = "SLO_ID";
             this.SloSelectComboBox.SelectedIndexChanged += new System.EventHandler(this.SloSelectComboBox_SelectedIndexChanged);
@@ -146,9 +156,10 @@
             // YearLabel
             // 
             this.YearLabel.AutoSize = true;
-            this.YearLabel.Location = new System.Drawing.Point(69, 39);
+            this.YearLabel.Location = new System.Drawing.Point(92, 48);
+            this.YearLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(29, 13);
+            this.YearLabel.Size = new System.Drawing.Size(36, 16);
             this.YearLabel.TabIndex = 14;
             this.YearLabel.Text = "Year";
             // 
@@ -172,32 +183,47 @@
             "2033",
             "2034",
             "2035"});
-            this.YearComboBox.Location = new System.Drawing.Point(69, 62);
+            this.YearComboBox.Location = new System.Drawing.Point(92, 76);
+            this.YearComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.YearComboBox.Name = "YearComboBox";
-            this.YearComboBox.Size = new System.Drawing.Size(121, 21);
+            this.YearComboBox.Size = new System.Drawing.Size(160, 24);
             this.YearComboBox.TabIndex = 13;
             // 
             // DataListBox
             // 
             this.DataListBox.FormattingEnabled = true;
-            this.DataListBox.Location = new System.Drawing.Point(331, 39);
+            this.DataListBox.ItemHeight = 16;
+            this.DataListBox.Location = new System.Drawing.Point(441, 48);
+            this.DataListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataListBox.Name = "DataListBox";
-            this.DataListBox.Size = new System.Drawing.Size(435, 303);
+            this.DataListBox.Size = new System.Drawing.Size(579, 372);
             this.DataListBox.TabIndex = 24;
             // 
             // navigationMenu1
             // 
             this.navigationMenu1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navigationMenu1.Location = new System.Drawing.Point(0, 0);
+            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.navigationMenu1.Name = "navigationMenu1";
-            this.navigationMenu1.Size = new System.Drawing.Size(800, 31);
+            this.navigationMenu1.Size = new System.Drawing.Size(1074, 38);
             this.navigationMenu1.TabIndex = 25;
+            // 
+            // BackButton
+            // 
+            this.BackButton.Location = new System.Drawing.Point(865, 514);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(157, 31);
+            this.BackButton.TabIndex = 26;
+            this.BackButton.Text = "Previous Menu";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // EnterDataForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1074, 572);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.navigationMenu1);
             this.Controls.Add(this.DataListBox);
             this.Controls.Add(this.RemoveButton);
@@ -211,6 +237,7 @@
             this.Controls.Add(this.SloSelectComboBox);
             this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.YearComboBox);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EnterDataForm";
             this.Text = "EnterDataForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EnterDataForm_FormClosed);
@@ -239,5 +266,6 @@
         private System.Windows.Forms.BindingSource measurementBindingSource;
         private System.Windows.Forms.ListBox DataListBox;
         private NavigationMenu navigationMenu1;
+        private System.Windows.Forms.Button BackButton;
     }
 }
