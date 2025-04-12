@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnterDataForm));
             this.RemoveButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -52,7 +53,7 @@
             // RemoveButton
             // 
             this.RemoveButton.Location = new System.Drawing.Point(92, 450);
-            this.RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(100, 28);
             this.RemoveButton.TabIndex = 23;
@@ -63,7 +64,7 @@
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(92, 393);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(4);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(100, 28);
             this.AddButton.TabIndex = 22;
@@ -74,7 +75,7 @@
             // SaveButton
             // 
             this.SaveButton.Location = new System.Drawing.Point(783, 469);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(4);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(239, 28);
             this.SaveButton.TabIndex = 21;
@@ -95,7 +96,7 @@
             // DataTextBox
             // 
             this.DataTextBox.Location = new System.Drawing.Point(92, 331);
-            this.DataTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.DataTextBox.Name = "DataTextBox";
             this.DataTextBox.Size = new System.Drawing.Size(132, 22);
             this.DataTextBox.TabIndex = 19;
@@ -116,7 +117,7 @@
             this.MetricComboBox.DisplayMember = "Title";
             this.MetricComboBox.FormattingEnabled = true;
             this.MetricComboBox.Location = new System.Drawing.Point(92, 245);
-            this.MetricComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MetricComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.MetricComboBox.Name = "MetricComboBox";
             this.MetricComboBox.Size = new System.Drawing.Size(287, 24);
             this.MetricComboBox.TabIndex = 17;
@@ -142,7 +143,7 @@
             this.SloSelectComboBox.DisplayMember = "Description";
             this.SloSelectComboBox.FormattingEnabled = true;
             this.SloSelectComboBox.Location = new System.Drawing.Point(92, 165);
-            this.SloSelectComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SloSelectComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.SloSelectComboBox.Name = "SloSelectComboBox";
             this.SloSelectComboBox.Size = new System.Drawing.Size(287, 24);
             this.SloSelectComboBox.TabIndex = 15;
@@ -184,7 +185,7 @@
             "2034",
             "2035"});
             this.YearComboBox.Location = new System.Drawing.Point(92, 76);
-            this.YearComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.YearComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.YearComboBox.Name = "YearComboBox";
             this.YearComboBox.Size = new System.Drawing.Size(160, 24);
             this.YearComboBox.TabIndex = 13;
@@ -194,7 +195,7 @@
             this.DataListBox.FormattingEnabled = true;
             this.DataListBox.ItemHeight = 16;
             this.DataListBox.Location = new System.Drawing.Point(441, 48);
-            this.DataListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataListBox.Margin = new System.Windows.Forms.Padding(4);
             this.DataListBox.Name = "DataListBox";
             this.DataListBox.Size = new System.Drawing.Size(579, 372);
             this.DataListBox.TabIndex = 24;
@@ -203,7 +204,7 @@
             // 
             this.navigationMenu1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navigationMenu1.Location = new System.Drawing.Point(0, 0);
-            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5);
             this.navigationMenu1.Name = "navigationMenu1";
             this.navigationMenu1.Size = new System.Drawing.Size(1074, 38);
             this.navigationMenu1.TabIndex = 25;
@@ -237,7 +238,8 @@
             this.Controls.Add(this.SloSelectComboBox);
             this.Controls.Add(this.YearLabel);
             this.Controls.Add(this.YearComboBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EnterDataForm";
             this.Text = "EnterDataForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EnterDataForm_FormClosed);

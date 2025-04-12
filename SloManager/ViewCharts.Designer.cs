@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewCharts));
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.startDateLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.sLOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SloSelectLabel = new System.Windows.Forms.Label();
             this.BackButton = new System.Windows.Forms.Button();
+            this.DownloadButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sLOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,11 +150,23 @@
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
+            // DownloadButton
+            // 
+            this.DownloadButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownloadButton.Location = new System.Drawing.Point(847, 696);
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(176, 41);
+            this.DownloadButton.TabIndex = 10;
+            this.DownloadButton.Text = "Download PNG";
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
             // ViewCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 694);
+            this.ClientSize = new System.Drawing.Size(1067, 758);
+            this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.SloSelectLabel);
             this.Controls.Add(this.SloComboBox);
@@ -163,6 +177,7 @@
             this.Controls.Add(this.startDateLabel);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.startDatePicker);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViewCharts";
             this.Text = "ViewCharts";
@@ -187,5 +202,6 @@
         private System.Windows.Forms.BindingSource sLOBindingSource;
         private System.Windows.Forms.Label SloSelectLabel;
         private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Button DownloadButton;
     }
 }

@@ -88,8 +88,8 @@ namespace SloManager
                     TargetsGridView.Columns["Scores"].Visible = false;
 
                 // Make only the Target column editable
-                //foreach (DataGridViewColumn col in TargetsGridView.Columns)
-                //    col.ReadOnly = col.Name != "Target";
+                foreach (DataGridViewColumn col in TargetsGridView.Columns)
+                    col.ReadOnly = col.Name != "Target";
 
                 // Resize "Description" column to fit data
                 if (TargetsGridView.Columns.Contains("Description"))
@@ -119,8 +119,8 @@ namespace SloManager
                 TargetsGridView.Columns["SLO"].Visible = false;
 
                 // Optional: make only the Target column editable
-                //foreach (DataGridViewColumn col in TargetsGridView.Columns)
-                //    col.ReadOnly = col.Name != "Target";
+                foreach (DataGridViewColumn col in TargetsGridView.Columns)
+                    col.ReadOnly = col.Name != "Target";
             }
         }
 

@@ -9,14 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ScottPlot;
+using ScottPlot.TickGenerators.Financial;
+using ScottPlot.TickGenerators;
 using ScottPlot.WinForms;
+using ScottPlot.TickGenerators.TimeUnits;
+using System.Globalization;
 
 namespace SloManager
 {
     public partial class ViewCharts : Form
     {
 
-        
+        bool chartBuilt = false;
 
         readonly FormsPlot FormsPlot1 = new FormsPlot() { Dock = DockStyle.Fill };
         public ViewCharts()
@@ -76,7 +80,7 @@ namespace SloManager
                 .ToList();
 
             // Pull all scores within range for any of those measurements
-            var measurementIds = measurements.Select(m => m.Measurement_ID).ToList(); // Materialized list
+            var measurementIds = measurements.Select(m => m.Measurement_ID).ToList(); 
 
             var scores = dbcontext.Scores
                 .Where(s => s.Date.Year >= startYear &&
@@ -104,6 +108,15 @@ namespace SloManager
                 scoreLine.LineWidth = 2;
                 scoreLine.LegendText = measurement.Title;
 
+                // custom tick labels, no commas in the year
+                var tickGen = new NumericManual();
+                foreach (var year in years)
+                {
+                    tickGen.AddMajor(year, year.ToString());
+                }
+
+                FormsPlot1.Plot.Axes.Bottom.TickGenerator = tickGen;
+
                 // Plot target line (flat, across years)
                 double[] targetLine = years.Select(y => (double)measurement.Target).ToArray();
                 var targetLinePlot = FormsPlot1.Plot.Add.Scatter(years, targetLine);
@@ -112,24 +125,27 @@ namespace SloManager
                 targetLinePlot.LineWidth = 3;
                 targetLinePlot.Color = scoreLine.Color;
             }
-                
 
+            
+            // show labels and legends
             FormsPlot1.Plot.XLabel("Year");
             FormsPlot1.Plot.YLabel("Score");
             FormsPlot1.Plot.Title($"Measurement Trends for: {selectedSLO.Description}");
             FormsPlot1.Plot.ShowLegend();
             FormsPlot1.Plot.Axes.AutoScale();
+
             // set the data area to render inside a fixed rectangle
             PixelSize size = new PixelSize(700, 350);
             Pixel offset = new Pixel(50, 50);
             PixelRect rect = new PixelRect(size, offset);
             FormsPlot1.Plot.Layout.Fixed(rect);
+
+            // update the chart
             FormsPlot1.Refresh();
-
-
-
-
+            chartBuilt = true;
         }
+
+
 
         private void BackButton_Click(object sender, EventArgs e)
         {
@@ -154,6 +170,37 @@ namespace SloManager
             MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
             parentForm.Visible = false;
+        }
+
+        private void DownloadButton_Click(object sender, EventArgs e)
+        {
+            if (chartBuilt)
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "PNG Image|*.png";
+                    sfd.Title = "Save Chart As Image";
+                    sfd.FileName = "SLO_Performance_Chart.png";
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            // Save the plot as a PNG
+                            FormsPlot1.Plot.SavePng(sfd.FileName, 800, 600);
+                            MessageBox.Show("Chart saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to save chart:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please generate a chart first.", "Error",MessageBoxButtons.OK);
+            }
         }
     }
 }

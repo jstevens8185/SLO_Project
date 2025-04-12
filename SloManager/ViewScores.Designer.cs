@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewScores));
             this.navigationMenu1 = new SloManager.NavigationMenu();
             this.ScoresDataGridView = new System.Windows.Forms.DataGridView();
             this.DeleteScoreButton = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             // 
             this.navigationMenu1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navigationMenu1.Location = new System.Drawing.Point(0, 0);
-            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5);
             this.navigationMenu1.Name = "navigationMenu1";
             this.navigationMenu1.Size = new System.Drawing.Size(1067, 38);
             this.navigationMenu1.TabIndex = 1;
@@ -50,7 +51,7 @@
             // 
             this.ScoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ScoresDataGridView.Location = new System.Drawing.Point(108, 196);
-            this.ScoresDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ScoresDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ScoresDataGridView.Name = "ScoresDataGridView";
             this.ScoresDataGridView.RowHeadersWidth = 51;
             this.ScoresDataGridView.Size = new System.Drawing.Size(841, 250);
@@ -59,7 +60,7 @@
             // DeleteScoreButton
             // 
             this.DeleteScoreButton.Location = new System.Drawing.Point(785, 473);
-            this.DeleteScoreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DeleteScoreButton.Margin = new System.Windows.Forms.Padding(4);
             this.DeleteScoreButton.Name = "DeleteScoreButton";
             this.DeleteScoreButton.Size = new System.Drawing.Size(163, 36);
             this.DeleteScoreButton.TabIndex = 3;
@@ -111,7 +112,8 @@
             this.Controls.Add(this.DeleteScoreButton);
             this.Controls.Add(this.ScoresDataGridView);
             this.Controls.Add(this.navigationMenu1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViewScores";
             this.Text = "ViewScores";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewScores_FormClosed);
