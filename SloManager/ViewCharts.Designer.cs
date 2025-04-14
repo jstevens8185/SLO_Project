@@ -70,7 +70,7 @@
             this.startDateLabel.Location = new System.Drawing.Point(264, 101);
             this.startDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(99, 25);
+            this.startDateLabel.Size = new System.Drawing.Size(82, 20);
             this.startDateLabel.TabIndex = 2;
             this.startDateLabel.Text = "Start Year";
             // 
@@ -81,7 +81,7 @@
             this.endDateLabel.Location = new System.Drawing.Point(553, 101);
             this.endDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.endDateLabel.Name = "endDateLabel";
-            this.endDateLabel.Size = new System.Drawing.Size(93, 25);
+            this.endDateLabel.Size = new System.Drawing.Size(76, 20);
             this.endDateLabel.TabIndex = 3;
             this.endDateLabel.Text = "End Year";
             // 
@@ -136,7 +136,7 @@
             this.SloSelectLabel.Location = new System.Drawing.Point(54, 101);
             this.SloSelectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SloSelectLabel.Name = "SloSelectLabel";
-            this.SloSelectLabel.Size = new System.Drawing.Size(113, 25);
+            this.SloSelectLabel.Size = new System.Drawing.Size(90, 20);
             this.SloSelectLabel.TabIndex = 8;
             this.SloSelectLabel.Text = "Select SLO";
             // 
@@ -144,9 +144,9 @@
             // 
             this.BackButton.Location = new System.Drawing.Point(59, 47);
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(75, 23);
+            this.BackButton.Size = new System.Drawing.Size(108, 34);
             this.BackButton.TabIndex = 9;
-            this.BackButton.Text = "Back";
+            this.BackButton.Text = "Previous Menu";
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
@@ -183,6 +183,7 @@
             this.Text = "ViewCharts";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewCharts_FormClosed);
             this.Load += new System.EventHandler(this.ViewCharts_Load);
+            this.Shown += new System.EventHandler(this.ViewCharts_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.sLOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

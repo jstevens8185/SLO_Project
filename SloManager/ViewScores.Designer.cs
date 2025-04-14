@@ -29,23 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewScores));
-            this.navigationMenu1 = new SloManager.NavigationMenu();
             this.ScoresDataGridView = new System.Windows.Forms.DataGridView();
             this.DeleteScoreButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.SortBySloButton = new System.Windows.Forms.Button();
             this.SortByYearButton = new System.Windows.Forms.Button();
+            this.navigationMenu1 = new SloManager.NavigationMenu();
             ((System.ComponentModel.ISupportInitialize)(this.ScoresDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // navigationMenu1
-            // 
-            this.navigationMenu1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.navigationMenu1.Location = new System.Drawing.Point(0, 0);
-            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5);
-            this.navigationMenu1.Name = "navigationMenu1";
-            this.navigationMenu1.Size = new System.Drawing.Size(1067, 38);
-            this.navigationMenu1.TabIndex = 1;
             // 
             // ScoresDataGridView
             // 
@@ -71,11 +62,11 @@
             // BackButton
             // 
             this.BackButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackButton.Location = new System.Drawing.Point(40, 47);
+            this.BackButton.Location = new System.Drawing.Point(108, 46);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(111, 38);
             this.BackButton.TabIndex = 4;
-            this.BackButton.Text = "Back";
+            this.BackButton.Text = "Previous Menu";
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
@@ -100,6 +91,15 @@
             this.SortByYearButton.Text = "Sort By Year";
             this.SortByYearButton.UseVisualStyleBackColor = true;
             this.SortByYearButton.Click += new System.EventHandler(this.SortByYearButton_Click);
+            // 
+            // navigationMenu1
+            // 
+            this.navigationMenu1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.navigationMenu1.Location = new System.Drawing.Point(0, 0);
+            this.navigationMenu1.Margin = new System.Windows.Forms.Padding(5);
+            this.navigationMenu1.Name = "navigationMenu1";
+            this.navigationMenu1.Size = new System.Drawing.Size(1067, 38);
+            this.navigationMenu1.TabIndex = 1;
             // 
             // ViewScores
             // 

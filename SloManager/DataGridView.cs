@@ -24,7 +24,12 @@ namespace SloManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dbcontext.SLOs.OrderBy(slo => slo.SLO_ID).Load();
+            
+        }
+
+        private async void LoadDB()
+        {
+            await dbcontext.SLOs.OrderBy(slo => slo.SLO_ID).LoadAsync();
 
             sLOBindingSource.DataSource = dbcontext.SLOs.Local;
         }

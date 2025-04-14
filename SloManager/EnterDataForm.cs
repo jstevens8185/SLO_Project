@@ -25,15 +25,7 @@ namespace SloManager
 
         private void EnterDataForm_Load(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-            dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).Load();
-            sLOBindingSource.DataSource = dbcontext.SLOs.Local;
 
-            dbcontext.Measurements.Load();
-            measurementBindingSource.DataSource = dbcontext.Measurements.Local;
-            SloSelectComboBox_SelectedIndexChanged(null, null);
-
-            YearComboBox.SelectedItem = date.Year.ToString();
 
         }
 
@@ -68,7 +60,7 @@ namespace SloManager
                     .ToList();
 
                 MetricComboBox.DataSource = filteredMeasurements;
-                MetricComboBox.DisplayMember = "Name";        
+                MetricComboBox.DisplayMember = "Name";
                 MetricComboBox.ValueMember = "Measurement_ID";
             }
         }
@@ -102,7 +94,7 @@ namespace SloManager
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (DataListBox.SelectedItem != null)
-            {   
+            {
                 DataListBox.Items.Remove(DataListBox.SelectedItem);
             }
             else
@@ -167,5 +159,25 @@ namespace SloManager
             mainMenu.Show();
             parentForm.Visible = false;
         }
+
+        private void EnterDataForm_Shown(object sender, EventArgs e)
+        {
+            loadDB();
+        }
+
+        private async void loadDB()
+        {
+
+            DateTime date = DateTime.Now;
+            await dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).LoadAsync();
+            sLOBindingSource.DataSource = dbcontext.SLOs.Local;
+
+            
+            await dbcontext.Measurements.LoadAsync();
+            measurementBindingSource.DataSource = dbcontext.Measurements.Local;
+            SloSelectComboBox_SelectedIndexChanged(null, null);
+
+            YearComboBox.SelectedItem = date.Year.ToString();
+        } 
     }
 }

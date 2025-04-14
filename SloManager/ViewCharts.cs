@@ -44,7 +44,11 @@ namespace SloManager
             startDatePicker.ShowUpDown = true;
             endDatePicker.CustomFormat = "yyyy";
             endDatePicker.ShowUpDown = true;
-            dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).Load();
+        }
+
+        private async void LoadDB()
+        {
+            await dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).LoadAsync();
             sLOBindingSource.DataSource = dbcontext.SLOs.Local;
         }
 
@@ -201,6 +205,11 @@ namespace SloManager
             {
                 MessageBox.Show("Please generate a chart first.", "Error",MessageBoxButtons.OK);
             }
+        }
+
+        private void ViewCharts_Shown(object sender, EventArgs e)
+        {
+            LoadDB();
         }
     }
 }
