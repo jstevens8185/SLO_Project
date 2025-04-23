@@ -19,10 +19,25 @@ namespace SloManager
 {
     public partial class ViewCharts : Form
     {
-
+        // Flag to track if a chart has been built
         bool chartBuilt = false;
 
+
+        // ScottPlot chart control for displaying performance data
         readonly FormsPlot FormsPlot1 = new FormsPlot() { Dock = DockStyle.Fill };
+
+
+        /******************************************************
+         * Function Name: ViewCharts
+         *
+         * Parameters: None
+         *
+         * Return Type: void (Constructor)
+         * 
+         * Description: Initializes the form and sets up the chart with default
+         * labels and layout.
+         *********************************************************/
+
         public ViewCharts()
         {
             InitializeComponent();
@@ -35,8 +50,21 @@ namespace SloManager
 
         }
 
+        // Database context for retrieving SLOs, measurements, and scores
         private SlosClassLibrary.SloDatabaseEntities dbcontext =
             new SlosClassLibrary.SloDatabaseEntities();
+
+
+        /******************************************************
+         * Function Name: ViewCharts_Load
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Configures the start and end date pickers to only
+         * display year values using up-down selectors.
+         *********************************************************/
 
         private void ViewCharts_Load(object sender, EventArgs e)
         {
@@ -46,16 +74,50 @@ namespace SloManager
             endDatePicker.ShowUpDown = true;
         }
 
+
+        /******************************************************
+         * Function Name: LoadDB
+         *
+         * Parameters: None
+         *
+         * Return Type: async void
+         * 
+         * Description: Asynchronously loads SLOs into the SLO ComboBox.
+         *********************************************************/
+
         private async void LoadDB()
         {
             await dbcontext.SLOs.OrderBy(SLO => SLO.SLO_ID).LoadAsync();
             sLOBindingSource.DataSource = dbcontext.SLOs.Local;
         }
 
+
+        /******************************************************
+         * Function Name: ViewCharts_FormClosed
+         *
+         * Parameters: object sender, FormClosedEventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Exits the application when the form is closed.
+         *********************************************************/
+
         private void ViewCharts_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+
+        /******************************************************
+         * Function Name: BuildChartButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Builds and displays a performance chart for the
+         * selected SLO, based on score data within the chosen year range.
+         *********************************************************/
 
         private void BuildChartButton_Click(object sender, EventArgs e)
         {
@@ -150,6 +212,16 @@ namespace SloManager
         }
 
 
+        /******************************************************
+         * Function Name: BackButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Navigates back to MainMenu. If it's not already open,
+         * creates a new instance and displays it.
+         *********************************************************/
 
         private void BackButton_Click(object sender, EventArgs e)
         {
@@ -175,6 +247,18 @@ namespace SloManager
             mainMenu.Show();
             parentForm.Visible = false;
         }
+
+
+        /******************************************************
+         * Function Name: DownloadButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Prompts the user to save the currently generated chart
+         * as a PNG file.
+         *********************************************************/
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
@@ -206,6 +290,17 @@ namespace SloManager
                 MessageBox.Show("Please generate a chart first.", "Error",MessageBoxButtons.OK);
             }
         }
+
+
+        /******************************************************
+         * Function Name: ViewCharts_Shown
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Loads SLO data from the database when the form is shown.
+         *********************************************************/
 
         private void ViewCharts_Shown(object sender, EventArgs e)
         {

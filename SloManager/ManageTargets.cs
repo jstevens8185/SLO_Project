@@ -13,13 +13,37 @@ namespace SloManager
 {
     public partial class ManageTargets : Form
     {
+        /******************************************************
+         * Function Name: ManageTargets
+         *
+         * Parameters: None
+         *
+         * Return Type: void (Constructor)
+         * 
+         * Description: Initializes the ManageTargets form.
+         *********************************************************/
+
         public ManageTargets()
         {
             InitializeComponent();
         }
 
+
+        // Entity Framework database context for accessing SLO and measurement data
         private SlosClassLibrary.SloDatabaseEntities dbcontext =
             new SlosClassLibrary.SloDatabaseEntities();
+
+
+        /******************************************************
+         * Function Name: BackButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Navigates back to the MainMenu form if it exists.
+         * If it doesn't, creates a new MainMenu form and displays it.
+         *********************************************************/
 
         private void BackButton_Click(object sender, EventArgs e)
         {
@@ -46,10 +70,34 @@ namespace SloManager
             parentForm.Visible = false;
         }
 
+
+        /******************************************************
+         * Function Name: ManageTargets_FormClosed
+         *
+         * Parameters: object sender, FormClosedEventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Closes the application if the ManageTargets form is closed.
+         *********************************************************/
+
         private void ManageTargets_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+
+        /******************************************************
+         * Function Name: ManageTargets_Load
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Loads SLOs from the database into the ComboBox and
+         * displays associated measurements in the DataGridView. Sets column
+         * visibility and editability as needed.
+         *********************************************************/
 
         private void ManageTargets_Load(object sender, EventArgs e)
         {
@@ -103,6 +151,17 @@ namespace SloManager
             }
         }
 
+        /******************************************************
+         * Function Name: SloComboBox_SelectedIndexChanged
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Updates the DataGridView to show measurements associated
+         * with the newly selected SLO in the ComboBox.
+         *********************************************************/
+
         private void SloComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SloComboBox.SelectedValue is int selectedSloId)
@@ -123,6 +182,17 @@ namespace SloManager
                     col.ReadOnly = col.Name != "Target";
             }
         }
+
+        /******************************************************
+         * Function Name: SaveButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Saves any changes made to the measurements in the DataGridView
+         * to the database and notifies the user of the result.
+         *********************************************************/
 
         private void SaveButton_Click(object sender, EventArgs e)
         {

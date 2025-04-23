@@ -13,29 +13,86 @@ namespace SloManager
 {
     public partial class ViewScores : Form
     {
-
+        // Entity Framework database context for accessing SLO-related score data
         private SlosClassLibrary.SloDatabaseEntities dbcontext =
         new SlosClassLibrary.SloDatabaseEntities();
+
+
+        /******************************************************
+         * Function Name: ViewScores
+         *
+         * Parameters: None
+         *
+         * Return Type: void (Constructor)
+         * 
+         * Description: Initializes the ViewScores form.
+         *********************************************************/
 
         public ViewScores()
         {
             InitializeComponent();
         }
 
+
+        /******************************************************
+         * Function Name: RefreshGrid
+         *
+         * Parameters: None
+         *
+         * Return Type: void
+         * 
+         * Description: Public method to reload the scores into the DataGridView.
+         *********************************************************/
+
         public void RefreshGrid()
         {
             LoadScoresIntoGrid();
         }
+
+
+        /******************************************************
+         * Function Name: ViewScores_FormClosed
+         *
+         * Parameters: object sender, FormClosedEventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Exits the application when the form is closed.
+         *********************************************************/
 
         private void ViewScores_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
+
+        /******************************************************
+         * Function Name: ViewScores_Load
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Loads score data into the grid when the form is loaded.
+         *********************************************************/
+
         private void ViewScores_Load(object sender, EventArgs e)
         {
             LoadScoresIntoGrid();
         }
+
+
+        /******************************************************
+         * Function Name: LoadScoresIntoGrid
+         *
+         * Parameters: None
+         *
+         * Return Type: void
+         * 
+         * Description: Fetches score records from the database, projects them
+         * into a simplified view model, and binds the result to the DataGridView.
+         * Also updates visibility, auto-sizing, and column headers.
+         *********************************************************/
 
         private void LoadScoresIntoGrid()
         {
@@ -74,6 +131,18 @@ namespace SloManager
 
         }
 
+
+        /******************************************************
+         * Function Name: DeleteScoreButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Deletes the selected score from the database
+         * after confirming with the user, then reloads the grid.
+         *********************************************************/
+
         private void DeleteScoreButton_Click(object sender, EventArgs e)
         {
             if (ScoresDataGridView.SelectedRows.Count > 0)
@@ -106,6 +175,18 @@ namespace SloManager
             }
         }
 
+
+        /******************************************************
+         * Function Name: BackButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Navigates back to the MainMenu form. If not open,
+         * creates a new instance of MainMenu and displays it.
+         *********************************************************/
+
         private void BackButton_Click(object sender, EventArgs e)
         {
             Form parentForm = this.FindForm();
@@ -130,6 +211,18 @@ namespace SloManager
             mainMenu.Show();
             parentForm.Visible = false;
         }
+
+
+        /******************************************************
+         * Function Name: SortScores
+         *
+         * Parameters: bool byYearFirst
+         *
+         * Return Type: void
+         * 
+         * Description: Sorts scores either by year first then SLO,
+         * or by SLO first then year, and updates the DataGridView.
+         *********************************************************/
 
         private void SortScores(bool byYearFirst)
         {
@@ -166,10 +259,32 @@ namespace SloManager
             ScoresDataGridView.DataSource = scoreList;
         }
 
+
+        /******************************************************
+         * Function Name: SortBySloButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Handles click event for sorting by SLO title first.
+         *********************************************************/
+
         private void SortBySloButton_Click(object sender, EventArgs e)
         {
             SortScores(byYearFirst: false);
         }
+
+
+        /******************************************************
+         * Function Name: SortByYearButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Handles click event for sorting by year first.
+         *********************************************************/
 
         private void SortByYearButton_Click(object sender, EventArgs e)
         {

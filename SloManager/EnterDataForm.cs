@@ -15,11 +15,22 @@ namespace SloManager
 {
     public partial class EnterDataForm : Form
     {
+
+        /******************************************************
+         * Function Name: EnterDataForm
+         *
+         * Parameters: None
+         *
+         * Return Type: void (Constructor)
+         * 
+         * Description: Initializes the EnterDataForm.
+         *********************************************************/
         public EnterDataForm()
         {
             InitializeComponent();
         }
 
+        // Entity Framework database context for accessing SLO and measurement data
         private SlosClassLibrary.SloDatabaseEntities dbcontext =
             new SlosClassLibrary.SloDatabaseEntities();
 
@@ -29,6 +40,13 @@ namespace SloManager
 
         }
 
+
+        /******************************************************
+         * Class Name: PendingScore
+         *
+         * Description: Represents a temporary score entry to be saved.
+         * Used for displaying pending data before saving to the database.
+         *********************************************************/
 
         public class PendingScore
         {
@@ -44,10 +62,33 @@ namespace SloManager
             }
         }
 
+
+        /******************************************************
+         * Function Name: EnterDataForm_FormClosed
+         *
+         * Parameters: object sender, FormClosedEventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Exits the application when the form is closed.
+         *********************************************************/
+
         private void EnterDataForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+
+        /******************************************************
+         * Function Name: SloSelectComboBox_SelectedIndexChanged
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Filters the MetricComboBox based on the selected SLO
+         * to show only related measurements.
+         *********************************************************/
 
         private void SloSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -64,6 +105,19 @@ namespace SloManager
                 MetricComboBox.ValueMember = "Measurement_ID";
             }
         }
+
+
+
+        /******************************************************
+         * Function Name: AddButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Validates and adds a new PendingScore to the list.
+         * Ensures all fields are correctly filled before adding.
+         *********************************************************/
 
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -91,6 +145,17 @@ namespace SloManager
             }
         }
 
+
+        /******************************************************
+         * Function Name: RemoveButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Removes the selected PendingScore from the list.
+         *********************************************************/
+
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (DataListBox.SelectedItem != null)
@@ -102,6 +167,18 @@ namespace SloManager
                 MessageBox.Show("Please select an item to remove.");
             }
         }
+
+
+        /******************************************************
+         * Function Name: SaveButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Saves all PendingScores in the list to the database
+         * as Score records. Displays a success or error message.
+         *********************************************************/
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -135,6 +212,18 @@ namespace SloManager
             }
         }
 
+
+        /******************************************************
+         * Function Name: BackButton_Click
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Navigates back to MainMenu. If it's not open,
+         * creates a new instance and opens it.
+         *********************************************************/
+
         private void BackButton_Click(object sender, EventArgs e)
         {
             Form parentForm = this.FindForm();
@@ -160,10 +249,34 @@ namespace SloManager
             parentForm.Visible = false;
         }
 
+
+        /******************************************************
+         * Function Name: EnterDataForm_Shown
+         *
+         * Parameters: object sender, EventArgs e
+         *
+         * Return Type: void
+         * 
+         * Description: Loads database content into the form when it's first shown.
+         *********************************************************/
+
         private void EnterDataForm_Shown(object sender, EventArgs e)
         {
             loadDB();
         }
+
+
+        /******************************************************
+         * Function Name: loadDB
+         *
+         * Parameters: None
+         *
+         * Return Type: async Task (void-like)
+         * 
+         * Description: Asynchronously loads SLO and Measurement data from the
+         * database and binds them to their respective data sources. Also sets
+         * the YearComboBox to the current year.
+         *********************************************************/
 
         private async void loadDB()
         {
